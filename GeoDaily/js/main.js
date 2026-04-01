@@ -14,7 +14,7 @@ renderGuesses(state);
 if (state.gameOver) {
   renderResult(state);
 } else {
-  setStatus(`Guess ${state.guesses.length + 1} of 6 wrong guesses reveal new clues`);
+  setStatus(`Guess ${state.guesses.length + 1} of 4 — each wrong guess reveals a new clue`);
   bindInput(handleGuess);
 }
 
@@ -29,6 +29,6 @@ function handleGuess(guess) {
     updateStreak(state.won);
     renderResult(state);
   } else {
-    setStatus(`Guess ${state.guesses.length + 1} of 6  wrong guesses reveal new clues`);
+    setStatus(`Guess ${state.guesses.length + 1} of 4 — each wrong guess reveals a new clue`);
   }
 }
