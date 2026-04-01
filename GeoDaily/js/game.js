@@ -44,5 +44,6 @@ export function buildShareText(state, country) {
   while (lines.length < MAX_GUESSES) lines.push('⬛');
 
   const score = state.won ? `${state.guesses.length}/${MAX_GUESSES}` : 'X/6';
-  return `GeoDaily ${score}\n${lines.join('')}\n`;
+    return `BokehDaily ${score}\n${lines.join('')}\nPlay at this SITE!!;
+
 }
