@@ -1,0 +1,66 @@
+:root {
+  --bg:            #1a1a2e;
+  --surface:       #16213e;
+  --surface-2:     #1e2a4a;
+
+  --border:        rgba(255, 182, 219, 0.2);
+  --border-strong: rgba(255, 182, 219, 0.45);
+
+  --text:          #f8e8ff;
+  --text-muted:    rgba(248, 232, 255, 0.55);
+  --text-dim:      rgba(248, 232, 255, 0.25);
+
+  --accent:        #ff6eb4;
+  --accent-dim:    rgba(255, 110, 180, 0.13);
+  --accent-border: rgba(255, 110, 180, 0.45);
+  --accent-on:     #fff;
+
+  --green:         #7ee8a2;
+  --green-dim:     rgba(126, 232, 162, 0.13);
+  --green-border:  rgba(126, 232, 162, 0.45);
+
+  --red:           #ff8fab;
+  --red-dim:       rgba(255, 143, 171, 0.13);
+  --red-border:    rgba(255, 143, 171, 0.45);
+
+  --purple:        #c084fc;
+  --blue-soft:     #93c5fd;
+
+  --font-display:  'Nunito', sans-serif;
+  --font-body:     'Nunito Sans', sans-serif;
+
+  --radius-sm:     12px;
+  --radius-md:     16px;
+  --radius-lg:     20px;
+  --radius-xl:     26px;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 0%, rgba(192, 132, 252, 0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 100%, rgba(255, 110, 180, 0.11) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 182, 219, 0.06) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,0 +1,46 @@
+@keyframes clueReveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.clue-row {
+  animation: clueReveal 0.3s ease both;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-5px); }
+  75%       { transform: translateX(5px); }
+}
+
+.guess-chip--wrong {
+  animation: shake 0.28s ease;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.85); }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.guess-chip--correct {
+  animation: pop 0.32s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-banner {
+  animation: slideUp 0.35s ease both;
+}
+
+@keyframes flashPink {
+  0%, 100% { border-color: var(--border-strong); color: var(--text); }
+  40%       { border-color: var(--accent-border); color: var(--accent); }
+}
+
+.share-btn--copied {
+  animation: flashPink 0.7s ease;
+}
