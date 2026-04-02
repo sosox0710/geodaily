@@ -1,7 +1,7 @@
 import { DAILY_COUNTRIES, MAX_GUESSES } from './data.js';
 
 function getDayIndex() {
-  const start = Date.UTC(2025, 3, 30);
+  const start = Date.UTC(2024, 0, 1);
   const today = Date.UTC(
     new Date().getUTCFullYear(),
     new Date().getUTCMonth(),
@@ -53,12 +53,16 @@ export function processGuess(state, guess, country) {
 }
 
 export function buildShareText(state, country) {
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+
   const lines = state.guesses.map(g =>
     g.toLowerCase() === country.name.toLowerCase() ? '🟩' : '🟥'
   );
-
   while (lines.length < MAX_GUESSES) lines.push('⬛');
 
-  const score = state.won ? `${state.guesses.length}/${MAX_GUESSES}` : 'X/4';
-  return `BokehDaily ${score} (${state.score ?? 0}pts)\n${lines.join('')}\nPlay at this SITE!!`;
+  const result = state.won ? `${state.guesses.length}/${MAX_GUESSES}` : 'X/4';
+  const pts = state.score ?? 0;
+
+  return `BokehDaily ${result} (${pts}pts)\nhttps://sosox0710.github.io/geodaily/GeoDaily/index.html ${dateStr}\n${lines.join('')}\nFinal score: ${pts}`;
 }
