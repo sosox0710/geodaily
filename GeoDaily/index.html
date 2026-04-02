@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bokeh Daily Geography Game</title>
-  <meta name="description" content="Guess the mystery country of the day with 4 clues.!" />
+  <title>GeoDaily — Daily Geography Game</title>
+  <meta name="description" content="Guess the mystery country of the day with 6 clues. A new challenge every day!" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -18,7 +18,7 @@
   <div class="page">
 
     <header class="header">
-      <div class="logo">🌍 Bokeh<span>Daily</span></div>
+      <div class="logo">🌍 Geo<span>Daily</span></div>
       <div class="header-right">
         <div class="date-label" id="date-label"></div>
         <div class="streak-label" id="streak-label"></div>
@@ -31,14 +31,14 @@
 
       <div class="clues-card">
         <div class="clues-card__header">
-          <span class="clues-card__title">Clues</span>
+          <span class="clues-card__title">🔍 Clues</span>
           <span class="clues-card__count" id="clues-count"></span>
         </div>
         <div id="clues-list"></div>
       </div>
 
       <section class="guesses-section">
-        <div class="section-label">Your guesses!</div>
+        <div class="section-label">Your guesses</div>
         <div class="guesses-grid" id="guesses-grid"></div>
       </section>
 
@@ -52,7 +52,7 @@
             autocomplete="off"
             spellcheck="false"
           />
-          <button id="submit-btn" class="submit-btn">Guess</button>
+          <button id="submit-btn" class="submit-btn">Guess ✈️</button>
         </div>
         <div class="autocomplete" id="autocomplete"></div>
       </div>
@@ -63,22 +63,23 @@
         <div class="section-label">How to play</div>
         <ul class="how-to-list">
           <li>Guess the mystery country of the day.</li>
-          <li>You have 4 guesses each wrong guess unlocks a new clue.</li>
+          <li>You have 4 guesses — each wrong guess unlocks a new clue.</li>
           <li>The fewer guesses you use, the better your score.</li>
-          <li>A new country every day come back tomorrow!</li>
+          <li>A new country every day — come back tomorrow!</li>
         </ul>
       </div>
 
     </main>
 
     <footer class="footer">
-      yes I am employed - sophie
+      yes I am employed 🌐
     </footer>
 
   </div>
 
   <script type="module" src="js/data.js"></script>
   <script type="module" src="js/storage.js"></script>
+  <script type="module" src="js/supabase.js"></script>
   <script type="module" src="js/game.js"></script>
   <script type="module" src="js/ui.js"></script>
   <script type="module" src="js/main.js"></script>

@@ -1,8 +1,10 @@
-import { getTodaysCountry, createInitialState, processGuess } from './game.js';
+import { getTodaysCountry, createInitialState, processGuess, getTodayKey } from './game.js';
 import { loadDailyState, saveDailyState, getStreak, updateStreak } from './storage.js';
-import { renderHeader, renderClues, renderGuesses, renderResult, setStatus, bindInput } from './ui.js';
+import { renderHeader, renderClues, renderGuesses, renderResult, setStatus, bindInput, showUsernamePrompt } from './ui.js';
+import { submitScore, fetchLeaderboard, fetchStats } from './supabase.js';
 
 const country = getTodaysCountry();
+const dayKey  = getTodayKey();
 
 let state = loadDailyState() ?? { ...createInitialState(), country };
 state.country = country;
@@ -12,7 +14,7 @@ renderClues(state);
 renderGuesses(state);
 
 if (state.gameOver) {
-  renderResult(state);
+  finishGame(false);
 } else {
   setStatus(`Guess ${state.guesses.length + 1} of 4 — each wrong guess reveals a new clue`);
   bindInput(handleGuess);
@@ -20,15 +22,41 @@ if (state.gameOver) {
 
 function handleGuess(guess) {
   state = processGuess(state, guess, country);
-
   saveDailyState(state);
   renderClues(state);
   renderGuesses(state);
 
   if (state.gameOver) {
     updateStreak(state.won);
-    renderResult(state);
+    finishGame(true);
   } else {
     setStatus(`Guess ${state.guesses.length + 1} of 4 — each wrong guess reveals a new clue`);
+  }
+}
+
+async function finishGame(justFinished) {
+  if (justFinished) {
+    showUsernamePrompt(async (username) => {
+      state.username = username;
+      saveDailyState(state);
+      await submitScore({
+        username,
+        country: country.name,
+        dayKey,
+        cluesUsed: state.cluesUsed ?? 4,
+        score:     state.score ?? 0,
+      });
+      const [leaderboard, stats] = await Promise.all([
+        fetchLeaderboard(dayKey),
+        fetchStats(dayKey),
+      ]);
+      renderResult(state, leaderboard, stats);
+    });
+  } else {
+    const [leaderboard, stats] = await Promise.all([
+      fetchLeaderboard(dayKey),
+      fetchStats(dayKey),
+    ]);
+    renderResult(state, leaderboard, stats);
   }
 }
