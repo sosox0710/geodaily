@@ -1,7 +1,7 @@
 import { DAILY_COUNTRIES, MAX_GUESSES } from './data.js';
 
 function getDayIndex() {
-  const start = Date.UTC(2024, 0, 1);
+  const start = Date.UTC(2025, 3, 30);
   const today = Date.UTC(
     new Date().getUTCFullYear(),
     new Date().getUTCMonth(),
